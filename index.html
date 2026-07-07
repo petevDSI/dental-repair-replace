@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org JSON-LD: WebSite -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,10 +44,133 @@
       "description": "Free operational intelligence tool for dental practices. Lifecycle benchmarks, downtime analysis, and repair economics to make smarter equipment decisions."
     }
     </script>
+
+    <!-- FAQPage JSON-LD for search engines and AI crawlers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the Dental Equipment Repair or Replace Calculator do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The calculator analyzes your dental equipment and produces a scored recommendation — repair, monitor, plan replacement, or replace immediately. It weighs four factors: equipment age relative to its expected lifespan, current repair cost as a percentage of replacement value, downtime cost from recent failures, and parts availability or obsolescence risk."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is this tool for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This tool is built for dental practice owners, office managers, DSO equipment directors, and dental CPAs who need a fast, data-backed answer to the repair-or-replace question — without guesswork or a service rep's opinion. It covers all major operatory equipment including dental chairs, delivery units, compressors, sterilizers, CBCT units, intraoral scanners, and more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is the repair-or-replace recommendation calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool runs a weighted scoring model on a 0–100 scale. Equipment age contributes 20% of the score, repair burden (current repair cost as a share of replacement cost, adjusted for failure frequency) contributes 40%, estimated downtime cost contributes 20%, and parts obsolescence contributes 10%. A maintenance history modifier adjusts the final score up or down by up to 15 points. Scores of 35 or below indicate repair is recommended; scores above 75 indicate immediate replacement is warranted."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this tool free? Do I need to create an account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — completely free, no account or signup required. Enter your equipment details, run the analysis, and get a full recommendation with a 5-year cost projection and industry benchmark comparison. The tool is provided by DentalAssetIQ, a product of Dental Strategy Institute."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Static SEO/AI-crawler content — rendered server-side, no JavaScript required -->
+    <section style="
+      font-family: Arial, sans-serif;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+      color: #2C2C2C;
+      border-top: 3px solid #A0522D;
+    ">
+      <h2 style="
+        font-family: Arial, sans-serif;
+        color: #0D1F3C;
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin: 0 0 16px;
+      ">How This Calculator Works</h2>
+      <p style="font-size: 0.97rem; line-height: 1.7; margin: 0 0 40px; color: #2C2C2C;">
+        The DentalAssetIQ Repair or Replace Calculator scores your dental equipment on a 0–100 scale using four weighted factors: equipment age relative to its category's expected lifespan, current repair cost as a share of replacement value (adjusted for failure frequency over the past 24 months), estimated downtime cost based on production loss per failure event, and parts availability or obsolescence risk. A maintenance history modifier shifts the final score up or down by up to 15 points. Scores at or below 35 favor repair; scores above 75 indicate replacement is the cost-effective choice. The tool also generates a 5-year cumulative cost projection comparing the repair path against the replacement path so you can see the crossover point.
+      </p>
+
+      <h2 style="
+        font-family: Arial, sans-serif;
+        color: #0D1F3C;
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin: 0 0 28px;
+      ">Frequently Asked Questions</h2>
+
+      <div style="border-left: 4px solid #A0522D; padding-left: 20px; margin-bottom: 32px;">
+        <h3 style="
+          font-family: Arial, sans-serif;
+          color: #C9A84C;
+          font-size: 1.05rem;
+          font-weight: 700;
+          margin: 0 0 8px;
+        ">What does this calculator do?</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7; margin: 0; color: #2C2C2C;">
+          It produces a scored, data-backed repair-or-replace recommendation for any major dental operatory equipment — chairs, delivery units, compressors, sterilizers, CBCT units, intraoral scanners, and more. You answer four short question sets about your equipment's age, recent repair history, downtime impact, and maintenance status. The engine runs a weighted model and returns a verdict (Repair Recommended, Monitor Closely, Plan Replacement, or Replace Immediately) along with an industry benchmark comparison and a 5-year cost projection.
+        </p>
+      </div>
+
+      <div style="border-left: 4px solid #A0522D; padding-left: 20px; margin-bottom: 32px;">
+        <h3 style="
+          font-family: Arial, sans-serif;
+          color: #C9A84C;
+          font-size: 1.05rem;
+          font-weight: 700;
+          margin: 0 0 8px;
+        ">Who is this tool for?</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7; margin: 0; color: #2C2C2C;">
+          Dental practice owners, office managers, DSO equipment and procurement directors, and dental CPAs who need a fast, objective answer to the repair-or-replace question — without relying on a service technician's opinion or guessing at depreciation tables. The calculator is especially useful when preparing for a practice sale, equipment refinancing, or an insurance claim where a documented decision rationale is needed.
+        </p>
+      </div>
+
+      <div style="border-left: 4px solid #A0522D; padding-left: 20px; margin-bottom: 32px;">
+        <h3 style="
+          font-family: Arial, sans-serif;
+          color: #C9A84C;
+          font-size: 1.05rem;
+          font-weight: 700;
+          margin: 0 0 8px;
+        ">How is the recommendation calculated?</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7; margin: 0; color: #2C2C2C;">
+          The model weights four components: equipment age as a percentage of its category's expected lifespan (20%), repair burden — current repair cost as a percentage of replacement value, multiplied by a failure-frequency factor (40%), downtime cost risk based on production loss per failure event (20%), and obsolescence risk from parts availability (10%). A preventive-maintenance modifier adjusts the total by up to ±15 points. The final score maps to one of four verdict bands. All category benchmarks — expected lifespans, typical replacement costs, downtime days per failure — are drawn from secondary-market transaction data compiled by DentalAssetIQ.
+        </p>
+      </div>
+
+      <div style="border-left: 4px solid #A0522D; padding-left: 20px; margin-bottom: 0;">
+        <h3 style="
+          font-family: Arial, sans-serif;
+          color: #C9A84C;
+          font-size: 1.05rem;
+          font-weight: 700;
+          margin: 0 0 8px;
+        ">Is this tool free? Do I need to sign up?</h3>
+        <p style="font-size: 0.95rem; line-height: 1.7; margin: 0; color: #2C2C2C;">
+          Completely free — no account, no email, no signup required. Enter your equipment details, run the analysis, and receive a full recommendation with cost projections immediately. The tool is provided by <strong>DentalAssetIQ</strong>, a product of Dental Strategy Institute. For deeper equipment valuation, fair market value reports, and insurance documentation, visit <a href="https://app.dentalassetiq.com" style="color: #0D1F3C; font-weight: 600;">app.dentalassetiq.com</a>.
+        </p>
+      </div>
+    </section>
   </body>
 </html>
