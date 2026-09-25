@@ -60,10 +60,12 @@ function verdictFromScore(score: number): { verdict: FinalVerdict; label: string
 function buildProjections(
   repairCostYear1: number,
   replacementCost: number,
+  expectedLifespan: number,
   ageScore: number,
   repairsCount: number
 ): { repair: number[]; replace: number[] } {
-  // Repair path: escalating costs year over year
+  // Repair path: cumulative recurring repair + downtime burden, escalating
+  // year over year as the equipment ages and failures compound.
   const escalationRate = 1 + (ageScore / 100) * 0.15 + (repairsCount * 0.05);
   const repairPath: number[] = [];
   let cumRepair = 0;
@@ -72,11 +74,19 @@ function buildProjections(
     repairPath.push(Math.round(cumRepair));
   }
 
-  // Replace path: upfront cost, then minimal maintenance (~2% of cost/yr)
+  // Replace path: annualized cost of ownership. Rather than dropping the
+  // full replacement cost into Year 1 (which dwarfs any repair estimate and
+  // makes a 5-year comparison meaningless for big-ticket equipment), the
+  // replacement cost is spread across the new unit's expected lifespan —
+  // i.e. what a replacement effectively "costs" per year of use — plus a
+  // small ongoing maintenance allowance (~2% of replacement cost/yr). This
+  // puts both paths on the same annualized basis so the comparison actually
+  // reflects the lifecycle economics behind the verdict above.
+  const annualizedReplacementCost = replacementCost / Math.max(expectedLifespan, 1);
   const replacePath: number[] = [];
-  let cumReplace = replacementCost;
+  let cumReplace = 0;
   for (let i = 1; i <= 5; i++) {
-    if (i > 1) cumReplace += replacementCost * 0.02;
+    cumReplace += annualizedReplacementCost + replacementCost * 0.02;
     replacePath.push(Math.round(cumReplace));
   }
 
@@ -173,6 +183,7 @@ export function runCalculation(form: CalculatorFormData): CalculationResult {
   const { repair: projectedRepairCosts, replace: projectedReplaceCosts } = buildProjections(
     annualRepairEstimate,
     replacementCost,
+    expectedLifespan,
     ageScore,
     step2.repairsLast24Months
   );

@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import type { CalculationResult } from '@/types/calculator';
 import { BRAND_RECOMMENDATIONS, EQUIPMENT_UPGRADE_CONTENT } from '@/constants/calculatorData';
 import ScoreRing from './ScoreRing';
 import TimelineChart from './TimelineChart';
 import { toast } from 'sonner';
+import { generateReportPdf } from '@/lib/generateReportPdf';
 
 interface Props {
   result: CalculationResult;
@@ -63,8 +65,19 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
   const isReplace = result.verdict === 'plan_replacement' || result.verdict === 'replace_recommended';
   const finalScore = result.scores.finalScore;
 
-  const handlePrint = () => {
-    window.print();
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
+
+  const handleDownloadReport = async () => {
+    if (isGeneratingReport) return;
+    setIsGeneratingReport(true);
+    try {
+      await generateReportPdf(result, equipmentLabel, manufacturer);
+    } catch (err) {
+      console.error('Report generation failed', err);
+      toast.error('Could not generate the report. Please try again.');
+    } finally {
+      setIsGeneratingReport(false);
+    }
   };
 
   const handleShare = () => {
@@ -92,11 +105,15 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
             </svg>
             Share
           </button>
-          <button onClick={handlePrint} className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-teal-600 bg-white border border-slate-200 hover:border-teal-300 px-3 py-2 rounded-lg transition-all print:hidden">
+          <button
+            onClick={handleDownloadReport}
+            disabled={isGeneratingReport}
+            className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-teal-600 bg-white border border-slate-200 hover:border-teal-300 px-3 py-2 rounded-lg transition-all disabled:opacity-60 disabled:cursor-wait"
+          >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H8a2 2 0 01-2-2V5a2 2 0 012-2h6l6 6v11a2 2 0 01-2 2z" />
             </svg>
-            Print / PDF
+            {isGeneratingReport ? 'Generating…' : 'Download Report (PDF)'}
           </button>
         </div>
       </div>

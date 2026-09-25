@@ -53,7 +53,7 @@ const TimelineChart = ({ repairCosts, replaceCosts }: Props) => {
           <Tooltip
             formatter={(value: number, name: string) => [
               `$${value.toLocaleString()}`,
-              name === 'repair' ? 'Repair Path (Cumulative)' : 'Replace Path (Cumulative)',
+              name === 'repair' ? 'Repair Path (Cumulative)' : 'Replacement Path (Annualized Cost of Ownership)',
             ]}
             contentStyle={{ borderRadius: '10px', border: '1px solid #e2e8f0', fontSize: 12, boxShadow: '0 4px 6px -1px rgba(0,0,0,0.07)' }}
             labelStyle={{ fontWeight: 600, color: '#1e293b' }}
@@ -74,7 +74,7 @@ const TimelineChart = ({ repairCosts, replaceCosts }: Props) => {
           <Line type="monotone" dataKey="replace" stroke="#6366f1" strokeWidth={2.5} dot={{ r: 4, fill: '#6366f1' }} activeDot={{ r: 6 }} strokeDasharray="5 5" />
         </LineChart>
       </ResponsiveContainer>
-      <p className="text-xs text-slate-400 mt-2">Repair path reflects escalating costs based on age, failure frequency, and downtime exposure. Replacement path includes acquisition and minimal ongoing maintenance.</p>
+      <p className="text-xs text-slate-400 mt-2">Repair path reflects cumulative, escalating repair and downtime costs based on age and failure frequency. Replacement path spreads the replacement cost over the new equipment's expected lifespan, plus minimal ongoing maintenance, so both paths are compared on an annualized cost-of-ownership basis.</p>
     </div>
   );
 };
