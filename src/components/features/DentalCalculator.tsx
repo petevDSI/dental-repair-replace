@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CalculatorFormData, CalculationResult, Step1Data, Step2Data, Step3Data, Step4Data } from '@/types/calculator';
 import { runCalculation } from '@/lib/calculatorEngine';
 import { EQUIPMENT_LABELS } from '@/constants/calculatorData';
@@ -45,6 +45,18 @@ const DentalCalculator = () => {
   const [form, setForm] = useState<CalculatorFormData>(INITIAL_FORM);
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
+
+  // Bring the top of the calculator into view whenever the step changes
+  // (Next, Back, Calculate, Reset). Skipped on mount so the page loads at the hero.
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    containerRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }, [step]);
 
   const updateStep1 = (updates: Partial<Step1Data>) =>
     setForm((p) => ({ ...p, step1: { ...p.step1, ...updates } }));
@@ -76,7 +88,7 @@ const DentalCalculator = () => {
     : 'Equipment';
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden w-full max-w-2xl mx-auto">
+    <div ref={containerRef} className="scroll-mt-20 bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden w-full max-w-2xl mx-auto">
       {/* Calculator header */}
       <div className="bg-gradient-to-r from-slate-900 to-slate-800 px-6 py-5">
         <div className="flex items-center gap-3">
