@@ -28,13 +28,16 @@ export const EQUIPMENT_LABELS: Record<EquipmentCategory, string> = {
 
 export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]>> = {
   // Chairs — US-sold dental operatory seating brands
+  // Verified against Henry Schein / Patterson / Benco catalogs. DentalEZ added
+  // (major Patterson-distributed brand, previously missing). Belmont / Takara
+  // Belmont consolidated to one entry (same company, US arm branded "Belmont").
   dental_chair: [
     'A-dec',
     'DCI Edge',
     'Midmark',
     'Pelton & Crane',
-    'Belmont',
-    'Takara Belmont',
+    'DentalEZ',
+    'Belmont (Takara Belmont)',
     'Marus',
     'Flight Dental Systems',
     'Engle Dental',
@@ -46,8 +49,8 @@ export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]
     'DCI Edge',
     'Midmark',
     'Pelton & Crane',
-    'Belmont',
-    'Takara Belmont',
+    'DentalEZ',
+    'Belmont (Takara Belmont)',
     'Marus',
     'Flight Dental Systems',
     'Other',
@@ -58,8 +61,8 @@ export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]
     'DCI Edge',
     'Midmark',
     'Pelton & Crane',
-    'Belmont',
-    'Takara Belmont',
+    'DentalEZ',
+    'Belmont (Takara Belmont)',
     'Flight Dental Systems',
     'Engle Dental',
     'Other',
@@ -70,26 +73,27 @@ export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]
     'DCI Edge',
     'Midmark',
     'Pelton & Crane',
-    'Takara Belmont',
+    'DentalEZ',
+    'Belmont (Takara Belmont)',
     'Boyd Industries',
     'Flight Dental Systems',
     'Other',
   ],
-  // Compressors — US dental-rated oil-free compressed air systems only
+  // Compressors — US dental-rated oil-free compressed air systems only.
+  // "Dentair" and "Quincy Dental" removed — no evidence either is a real
+  // dental-market brand distributed by Henry Schein/Patterson/Benco.
   compressor: [
     'Air Techniques',
     'Midmark',
     'Ramvac (DentalEZ)',
-    'Dentair',
-    'Quincy Dental',
     'Other',
   ],
-  // Vacuum systems — US dental-rated wet/dry vacuum systems
+  // Vacuum systems — US dental-rated wet/dry vacuum systems. "Dentair" removed
+  // (unverifiable brand — likely a misremembering of DentalEZ/Air Techniques).
   vacuum_system: [
     'Air Techniques',
     'Midmark',
     'Ramvac (DentalEZ)',
-    'Dentair',
     'Other',
   ],
   // Utility room — US dental utility room package systems
@@ -111,9 +115,11 @@ export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]
     'NewTom (Cefla)',
     'Other',
   ],
-  // Intraoral X-ray — US dental intraoral radiography units
+  // Intraoral X-ray — US dental intraoral radiography units. Parent label
+  // updated: Envista rebranded its KaVo-lineage imaging business to DEXIS
+  // in 2022 — "KaVo Kerr" is the outdated pre-2022 name.
   intraoral_xray: [
-    'Dexis (KaVo Kerr)',
+    'Dexis (Envista)',
     'Carestream Dental',
     'Planmeca',
     'Dentsply Sirona',
@@ -122,14 +128,15 @@ export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]
     'Vatech',
     'Other',
   ],
-  // Digital sensors — US dental intraoral digital sensor systems
+  // Digital sensors — US dental intraoral digital sensor systems. Apteryx
+  // parent corrected: acquired by Planet DDS in 2020, not part of KaVo Kerr.
   sensor: [
-    'Dexis (KaVo Kerr)',
+    'Dexis (Envista)',
     'Carestream Dental',
     'Planmeca',
     'Dentsply Sirona (Schick)',
     'Acteon (Sopro)',
-    'Apteryx (KaVo Kerr)',
+    'Apteryx (Planet DDS)',
     'Other',
   ],
   // Panoramic — US dental panoramic / cephalometric imaging
@@ -162,26 +169,32 @@ export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]
     'Carestream Dental (CS 3700)',
     'Other',
   ],
-  // Sterilizers — US dental-rated autoclave / steam sterilizer systems
+  // Sterilizers — US dental-rated autoclave / steam sterilizer systems.
+  // Pelton & Crane Magnaclave is legacy (parts/refurbished only, no longer
+  // sold new by the major distributors) but kept — owners of older units
+  // still need repair-vs-replace guidance.
   sterilizer: [
     'Midmark (M-Series)',
     'SciCan (Statim / Bravo)',
     'Tuttnauer',
-    'Pelton & Crane (Magnaclave)',
+    'Pelton & Crane (Magnaclave — legacy)',
     'Hu-Friedy (SciCan)',
     'Other',
   ],
-  // Suction — US dental wet / dry suction evacuation systems
+  // Suction — US dental wet / dry suction evacuation systems. "Dentair" removed.
   suction_system: [
     'Air Techniques',
     'Midmark',
     'Ramvac (DentalEZ)',
-    'Dentair',
     'Other',
   ],
-  // Handpieces — US dental high/low-speed and electric handpiece brands
+  // Handpieces — US dental high/low-speed and electric handpiece brands.
+  // KaVo parent corrected: Envista sold its KaVo treatment-unit-and-
+  // instrument business (including handpieces) to Planmeca in 2022 —
+  // Envista kept only the imaging business (now DEXIS, see above).
+  // Star Dental corrected: it's a DentalEZ brand, not Dentsply.
   handpiece_system: [
-    'KaVo (Envista)',
+    'KaVo (Planmeca)',
     'Dentsply Sirona (XG / Smart)',
     'W&H (US distribution)',
     'Bien-Air (US distribution)',
@@ -189,7 +202,7 @@ export const EQUIPMENT_MANUFACTURERS: Partial<Record<EquipmentCategory, string[]
     'Brasseler USA',
     'Aseptico',
     'Midwest (Dentsply)',
-    'Star Dental (Dentsply)',
+    'Star Dental (DentalEZ)',
     'Other',
   ],
   other: ['Other'],
@@ -450,7 +463,7 @@ export const EQUIPMENT_ISSUES: Partial<Record<EquipmentCategory, IssueType[]>> =
     { label: 'Air dryer failure', avgCost: 750, laborHours: 3, severity: 'medium' },
     { label: 'Intake filter / valve replacement', avgCost: 280, laborHours: 1.5, severity: 'low' },
     { label: 'Head gasket / valve plate failure', avgCost: 900, laborHours: 4, severity: 'high' },
-    { label: 'Pump rebuild', avgCost: 1500, laborHours: 6, severity: 'high' },
+    { label: 'Compressor head / cylinder rebuild', avgCost: 1500, laborHours: 6, severity: 'high', notes: 'Dental compressors are oil-less piston/cylinder-head designs, not "pumps"' },
     { label: 'Motor failure', avgCost: 1200, laborHours: 4.5, severity: 'high' },
     { label: 'Tank corrosion / tank replacement', avgCost: 800, laborHours: 3.5, severity: 'high', notes: 'Safety-critical — immediate evaluation required' },
     { label: 'Pressure switch / regulator failure', avgCost: 350, laborHours: 2, severity: 'medium' },
@@ -458,9 +471,12 @@ export const EQUIPMENT_ISSUES: Partial<Record<EquipmentCategory, IssueType[]>> =
   vacuum_system: [
     { label: 'Strainer / trap cleaning', avgCost: 180, laborHours: 1, severity: 'low' },
     { label: 'Valve / gasket replacement', avgCost: 350, laborHours: 2, severity: 'medium' },
+    { label: 'Liquid ring / water-ring vacuum pump seal failure', avgCost: 700, laborHours: 3, severity: 'medium', notes: 'Wet-ring systems only — most common cause of gradual suction loss' },
+    { label: 'Wet vacuum pump water solenoid / flow-control failure', avgCost: 450, laborHours: 2.5, severity: 'medium' },
     { label: 'Separator tank failure', avgCost: 650, laborHours: 3, severity: 'medium' },
+    { label: 'Dry vacuum pump rotary vane / turbine wear — rebuild', avgCost: 1200, laborHours: 4.5, severity: 'high', notes: 'Dry (oil-lubricated or oil-free) systems only' },
     { label: 'Vacuum motor bearing failure', avgCost: 900, laborHours: 4, severity: 'high' },
-    { label: 'Vacuum motor seizure / replacement', avgCost: 1600, laborHours: 5, severity: 'critical' },
+    { label: 'Vacuum motor / pump seizure — full replacement', avgCost: 1600, laborHours: 5, severity: 'critical' },
     { label: 'Control board / electrical fault', avgCost: 750, laborHours: 3.5, severity: 'medium' },
   ],
   suction_system: [
