@@ -30,22 +30,51 @@ const HOW_IT_WORKS = [
   },
 ];
 
+const FREE_FEATURES = [
+  { title: 'Scored recommendation', desc: 'A 0–100 decision score with one of four clear verdicts: repair, monitor, plan replacement, or replace now.' },
+  { title: '5-year cost comparison', desc: 'See the cumulative cost of continued repairs against the annualized cost of replacement, and where the lines cross.' },
+  { title: 'Multiple issues at once', desc: 'Select every problem you are dealing with. Typical repair costs combine into one estimate you can adjust with your actual quote.' },
+  { title: '17 equipment categories', desc: 'Chairs, delivery units, lights, cabinetry, compressors, vacuum and suction, sterilizers, imaging, scanners, CAD/CAM, and more.' },
+  { title: 'Downloadable PDF report', desc: 'A branded, shareable report of your results, useful for budgeting, practice-sale prep, and documenting a capital decision.' },
+  { title: 'Lifecycle benchmarks', desc: 'Expected lifespans and replacement-cost estimates by category, so you can see where your equipment sits in its life.' },
+];
+
 const FAQ = [
   {
-    q: 'How is the decision score calculated?',
-    a: 'The score uses a 7-component weighted model: age vs. expected lifespan (20%), repair burden ratio (25%), failure frequency (15%), downtime risk (20%), obsolescence factors (10%), and maintenance compliance (10%).',
+    q: "Is the repair or replace calculator really free?",
+    a: "Yes. The DentalAssetIQ Repair or Replace Calculator is 100% free. You do not need an account, subscription, credit card, or sign-up to run an assessment, see your recommendation and 5-year cost projection, or download the PDF report. It is provided by DentalAssetIQ, a product of Dental Strategy Institute.",
   },
   {
-    q: 'What replacement cost is used if I leave the original price blank?',
-    a: 'The engine uses category-level industry averages — for example, $12,000 for dental chairs and $85,000 for CBCT units — sourced from standard dental equipment pricing benchmarks.',
+    q: "What does this dental equipment calculator do?",
+    a: "It produces a scored, data-backed recommendation on whether to repair or replace a piece of dental equipment. You answer four short sets of questions about the equipment's age, current repair issues and cost, downtime and production impact, and maintenance history. The tool returns a 0–100 decision score with one of four verdicts, an industry lifespan benchmark, a 5-year cost comparison, and a downloadable PDF report. Most assessments take under three minutes.",
   },
   {
-    q: 'Is this tool appropriate for DSOs and multi-location practices?',
-    a: 'Yes. The tool is designed for individual equipment assessments that can be run across multiple units. Each analysis produces a shareable, printable report.',
+    q: "How is the decision score calculated?",
+    a: "The tool combines seven inputs: equipment age versus expected lifespan, repair cost versus replacement cost, repair frequency over the last 24 months, downtime and production loss, technology obsolescence, parts availability, and maintenance history. Age counts for 20% of the score. Repair burden, which is repair cost as a percentage of replacement cost multiplied by a failure-frequency factor, counts for 40%. Downtime cost risk counts for 20%, and obsolescence and parts availability count for 10%. Preventive-maintenance habits and service-contract status then adjust the total up or down. Scores of 35 or below mean repair is recommended, 36–55 means repair is acceptable with close monitoring, 56–75 means plan replacement within 12–24 months, and above 75 means replace now.",
   },
   {
-    q: 'How should I interpret the 5-year cost projection chart?',
-    a: 'The chart shows cumulative costs along both paths. When the repair line crosses above the replacement line, continued repair investment becomes economically unfavorable.',
+    q: "Which dental equipment does the calculator cover?",
+    a: "It covers 17 categories: dental chairs, delivery units, operatory lights, cabinetry, compressors, vacuum systems, utility rooms, CBCT (cone beam) units, intraoral x-ray, digital sensors, panoramic and cephalometric units, CAD/CAM systems, intraoral scanners, sterilizers and autoclaves, suction systems, handpiece systems, and a general category for other equipment.",
+  },
+  {
+    q: "Can I evaluate more than one problem at the same time?",
+    a: "Yes. In Step 2 you can select every issue affecting the equipment. Typical repair costs for the selected issues are added into one combined estimate, which you can replace with an actual service quote. Several simultaneous problems raise the repair cost relative to replacement cost, which pushes the score toward replacement.",
+  },
+  {
+    q: "Who is this tool for?",
+    a: "Dental practice owners, office managers, DSO equipment and procurement directors, and dental CPAs who need a fast, objective answer to the repair-or-replace question without relying only on a service technician's opinion. It is also useful when preparing for a practice sale, budgeting capital expenses, or documenting the reasoning behind an equipment decision.",
+  },
+  {
+    q: "What replacement cost is used if I leave the original price blank?",
+    a: "The calculator uses category-level industry estimates, for example $12,000 for a dental chair, $6,500 for a compressor, and $85,000 for a CBCT unit. Enter your own figure for a result specific to your equipment.",
+  },
+  {
+    q: "Is this tool appropriate for DSOs and multi-location practices?",
+    a: "Yes. Run the assessment for each unit and download a separate PDF report for each one, which makes it easy to compare equipment across operatories and locations.",
+  },
+  {
+    q: "How should I read the 5-year cost projection chart?",
+    a: "The chart compares the cumulative cost of continuing to repair, which grows with age, failure frequency, and downtime, against the annualized cost of replacement, meaning the replacement price spread over the new equipment's expected lifespan plus minimal maintenance. When the repair line rises above the replacement line, continued repair spending becomes economically unfavorable.",
   },
 ];
 
@@ -71,12 +100,12 @@ const Index = () => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden sm:block text-xs text-slate-400">Equipment Lifecycle Intelligence</span>
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-teal-300 bg-teal-500/10 border border-teal-500/25 px-2.5 py-1 rounded-full">100% Free · No Sign-Up</span>
             <button
               onClick={scrollToCalculator}
               className="bg-teal-500 hover:bg-teal-400 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all"
             >
-              Start Assessment
+              Start Free Assessment
             </button>
           </div>
         </div>
@@ -103,21 +132,21 @@ const Index = () => {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/25 text-teal-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
               <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse" />
-              Free Operational Intelligence Tool
+              100% Free Dental Equipment Calculator
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-5">
               Should You Repair or Replace<br />
               <span className="text-teal-400">Your Dental Equipment?</span>
             </h1>
             <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              Use operational data, lifecycle benchmarks, downtime analysis, and repair economics to make smarter, more objective equipment decisions.
+              A free tool that uses operational data, lifecycle benchmarks, downtime analysis, and repair economics to help you make smarter, more objective equipment decisions. No account or sign-up needed.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <button
                 onClick={scrollToCalculator}
                 className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg shadow-teal-500/25 text-base"
               >
-                Start Assessment →
+                Start Free Assessment →
               </button>
               <button
                 onClick={() => window.open('/sample-report.pdf', '_blank')}
@@ -128,7 +157,7 @@ const Index = () => {
             </div>
             {/* Trust badges */}
             <div className="flex flex-wrap gap-x-6 gap-y-2">
-              {['Evidence-based 7-factor algorithm', 'Takes under 3 minutes', 'No sign-up required', 'Free forever'].map((item) => (
+              {['100% free, forever', 'No account or sign-up', 'Takes under 3 minutes', 'Evidence-based 7-factor algorithm'].map((item) => (
                 <div key={item} className="flex items-center gap-1.5 text-sm text-slate-400">
                   <svg className="w-3.5 h-3.5 text-teal-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -260,12 +289,43 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ── FREE / WHAT YOU GET ─────────────── */}
+      <section className="py-14 sm:py-16 bg-white border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <span className="inline-block bg-teal-50 text-teal-700 border border-teal-200 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+              100% Free
+            </span>
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">A Free Repair or Replace Calculator for Dental Equipment</h2>
+            <p className="text-slate-500 text-sm max-w-2xl mx-auto">
+              No account, no subscription, no credit card. Built for dental practice owners, office managers, DSO equipment and procurement teams, and dental CPAs.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {FREE_FEATURES.map((f) => (
+              <div key={f.title} className="bg-slate-50 rounded-2xl border border-slate-200 p-5">
+                <h3 className="font-semibold text-slate-900 text-sm mb-1.5">{f.title}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <button
+              onClick={scrollToCalculator}
+              className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-8 rounded-xl transition-all text-sm"
+            >
+              Start Your Free Assessment →
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* ── FAQ / SEO SECTION ────────────────── */}
       <section className="py-14 sm:py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-bold text-slate-900 mb-2">Frequently Asked Questions</h2>
-            <p className="text-slate-500 text-sm">Understanding the methodology behind the DentalAssetIQ decision engine.</p>
+            <p className="text-slate-500 text-sm">How the free DentalAssetIQ repair or replace calculator works, and how to read your results.</p>
           </div>
           <div className="space-y-4">
             {FAQ.map((item) => (
