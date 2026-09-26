@@ -424,9 +424,11 @@ export interface IssueType {
 
 // Avg dental service tech labor rate used in estimates: ~$165/hr (national, 2025)
 // Costs = labor + parts; ranges are mid-point estimates
+// Upholstery: full-kit parts pricing verified against dentalequipment.com listings (Sept 2026): vinyl ~$875–$1,195, UltraLeather ~$1,344–$1,790, Midmark UltraComfort $1,795
 export const EQUIPMENT_ISSUES: Partial<Record<EquipmentCategory, IssueType[]>> = {
   dental_chair: [
-    { label: 'Upholstery replacement', avgCost: 450, laborHours: 2, severity: 'low' },
+    { label: 'Upholstery — single piece (headrest, seat, or back cushion)', avgCost: 450, laborHours: 1, severity: 'low', notes: 'One cushion or cover only. Estimate — verify with your dealer' },
+    { label: 'Upholstery — full set (back, seat, headrest & arms)', avgCost: 1600, laborHours: 2, severity: 'medium', notes: 'Complete kit: parts typically $875–$1,795 by chair model, plus install labor' },
     { label: 'Foot control malfunction', avgCost: 650, laborHours: 2.5, severity: 'medium' },
     { label: 'Air/water syringe — leaking or inoperable', avgCost: 280, laborHours: 1.5, severity: 'low' },
     { label: 'Backrest actuator / positioning motor failure', avgCost: 850, laborHours: 3.5, severity: 'medium' },

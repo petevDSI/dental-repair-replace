@@ -18,7 +18,7 @@ const INITIAL_FORM: CalculatorFormData = {
     estimatedOriginalCost: '',
   },
   step2: {
-    issueType: '',
+    issueTypes: [],
     currentRepairEstimate: '',
     repairsLast24Months: 1,
     downtimePerFailure: '',

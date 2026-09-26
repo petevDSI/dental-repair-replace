@@ -42,7 +42,7 @@ export interface Step1Data {
 }
 
 export interface Step2Data {
-  issueType: string;
+  issueTypes: string[];
   currentRepairEstimate: string;
   repairsLast24Months: number;
   downtimePerFailure: DowntimePerFailure | '';

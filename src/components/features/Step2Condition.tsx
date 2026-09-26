@@ -56,17 +56,27 @@ const SEVERITY_CONFIG = {
 
 const Step2Condition = ({ data, onChange, onNext, onBack, category }: Props) => {
   const issues = category ? (EQUIPMENT_ISSUES[category as EquipmentCategory] ?? EQUIPMENT_ISSUES['other']!) : EQUIPMENT_ISSUES['other']!;
-  const selectedIssue = issues?.find((i) => i.label === data.issueType);
+  // Only count selections that belong to the current equipment category
+  const selectedIssues = (issues ?? []).filter((i) => data.issueTypes.includes(i.label));
+  const combinedEstimate = selectedIssues.reduce((sum, i) => sum + i.avgCost, 0);
+  const combinedLaborHours = selectedIssues.reduce((sum, i) => sum + i.laborHours, 0);
 
-  const handleIssueSelect = (label: string, avgCost: number) => {
+  // Toggle an issue on/off; the estimate auto-fills with the combined total of everything selected
+  const handleIssueToggle = (label: string) => {
+    const next = data.issueTypes.includes(label)
+      ? data.issueTypes.filter((l) => l !== label)
+      : [...data.issueTypes, label];
+    const total = (issues ?? [])
+      .filter((i) => next.includes(i.label))
+      .reduce((sum, i) => sum + i.avgCost, 0);
     onChange({
-      issueType: label,
-      currentRepairEstimate: String(avgCost),
+      issueTypes: next,
+      currentRepairEstimate: next.length > 0 ? String(total) : '',
     });
   };
 
   const isValid =
-    data.issueType !== '' &&
+    selectedIssues.length > 0 &&
     data.currentRepairEstimate !== '' &&
     data.downtimePerFailure !== '' &&
     data.reliabilityRating !== '' &&
@@ -77,27 +87,36 @@ const Step2Condition = ({ data, onChange, onNext, onBack, category }: Props) => 
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-semibold text-slate-900 mb-1">Current Condition</h2>
-        <p className="text-sm text-slate-500">Select the primary issue and describe recent repair history.</p>
+        <p className="text-sm text-slate-500">Select every issue you're dealing with and describe recent repair history.</p>
       </div>
 
       {/* Issue Type Selector */}
       <div className="space-y-2">
         <label className="block text-sm font-medium text-slate-700">
-          Primary Issue / Reason for Assessment <span className="text-red-500">*</span>
+          Issues / Reasons for Assessment <span className="text-red-500">*</span> <span className="text-xs text-slate-400 font-normal">(select all that apply)</span>
         </label>
         <div className="grid grid-cols-1 gap-2">
           {issues?.map((issue) => {
             const sev = SEVERITY_CONFIG[issue.severity];
-            const isSelected = data.issueType === issue.label;
+            const isSelected = data.issueTypes.includes(issue.label);
             return (
               <button
                 key={issue.label}
-                onClick={() => handleIssueSelect(issue.label, issue.avgCost)}
+                onClick={() => handleIssueToggle(issue.label)}
+                aria-pressed={isSelected}
                 className={`w-full text-left p-3 rounded-xl border-2 transition-all duration-150 ${
                   isSelected ? 'border-teal-500 bg-teal-50 ring-1 ring-teal-300' : 'border-slate-200 bg-white hover:border-slate-300'
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">
+                  <span
+                    aria-hidden="true"
+                    className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center text-xs font-bold ${
+                      isSelected ? 'bg-teal-500 border-teal-500 text-white' : 'border-slate-300 bg-white text-transparent'
+                    }`}
+                  >
+                    ✓
+                  </span>
                   <div className="flex-1 min-w-0">
                     <p className={`text-sm font-medium ${isSelected ? 'text-teal-800' : 'text-slate-800'}`}>{issue.label}</p>
                     {issue.notes && (
@@ -117,15 +136,24 @@ const Step2Condition = ({ data, onChange, onNext, onBack, category }: Props) => 
             );
           })}
         </div>
-        {selectedIssue && (
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center gap-3 text-xs text-slate-600">
-            <svg className="w-4 h-4 text-teal-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span>
-              Estimate based on ~{selectedIssue.laborHours}hr tech time at $165/hr + parts average.
-              Adjust the cost below if you have an actual quote.
-            </span>
+        {selectedIssues.length > 0 && (
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-2 text-xs text-slate-600">
+            <p className="font-semibold text-slate-700">
+              {selectedIssues.length} issue{selectedIssues.length > 1 ? 's' : ''} selected — combined estimate ~${combinedEstimate.toLocaleString()}
+            </p>
+            <ul className="space-y-0.5">
+              {selectedIssues.map((i) => (
+                <li key={i.label} className="flex justify-between gap-3">
+                  <span>{i.label}</span>
+                  <span className="font-medium">~${i.avgCost.toLocaleString()}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-slate-500">
+              Based on ~{combinedLaborHours}hr total tech time at $165/hr plus average parts. Multiple issues compound the
+              repair-vs-replace decision. If several are fixed in one service visit, your actual quote may be a little lower
+              because of shared travel and diagnostic time. Adjust the estimate below if you have a real quote.
+            </p>
           </div>
         )}
       </div>
@@ -142,7 +170,7 @@ const Step2Condition = ({ data, onChange, onNext, onBack, category }: Props) => 
               id="repairCost"
               type="number"
               min="0"
-              placeholder="Auto-filled from issue type"
+              placeholder="Auto-filled from selected issues"
               value={data.currentRepairEstimate}
               onChange={(e) => onChange({ currentRepairEstimate: e.target.value })}
               className="w-full bg-white border border-slate-200 rounded-xl pl-7 pr-4 py-3 text-slate-800 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent transition-all"
