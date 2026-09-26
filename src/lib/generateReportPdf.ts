@@ -64,6 +64,7 @@ interface ReportContext {
   reportDate: string;
   equipmentLabel: string;
   manufacturer: string;
+  sample: boolean;
 }
 
 function drawHeader(ctx: ReportContext) {
@@ -87,7 +88,7 @@ function drawHeader(ctx: ReportContext) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8.5);
   doc.setTextColor(...GOLD);
-  const label = 'EQUIPMENT INTELLIGENCE REPORT';
+  const label = ctx.sample ? 'SAMPLE REPORT — ILLUSTRATIVE DATA' : 'EQUIPMENT INTELLIGENCE REPORT';
   doc.text(label, PAGE_W - MARGIN, 30, { align: 'right' });
 
   doc.setFont('helvetica', 'normal');
@@ -192,7 +193,8 @@ function drawScoreBar(
 export async function generateReportPdf(
   result: CalculationResult,
   equipmentLabel: string,
-  manufacturer: string
+  manufacturer: string,
+  options: { sample?: boolean } = {}
 ): Promise<void> {
   const doc = new jsPDF({ unit: 'pt', format: 'letter' });
   const logoDataUrl = await imageUrlToDataURL(daiqLogoDark);
@@ -203,7 +205,7 @@ export async function generateReportPdf(
     day: 'numeric',
   });
 
-  const ctx: ReportContext = { doc, logoDataUrl, pageNum: 1, reportDate, equipmentLabel, manufacturer };
+  const ctx: ReportContext = { doc, logoDataUrl, pageNum: 1, reportDate, equipmentLabel, manufacturer, sample: options.sample ?? false };
   drawHeader(ctx);
   drawFooter(ctx);
 
@@ -446,7 +448,10 @@ export async function generateReportPdf(
   y += chartCaption.length * 9 + 14;
 
   // ── Industry benchmark ───────────────────────────────────────────
-  const benchLines = doc.splitTextToSize(result.industryBenchmark, CONTENT_W - 60);
+  // Measure at the same font used to draw, otherwise long lines overflow the box
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8.5);
+  const benchLines = doc.splitTextToSize(result.industryBenchmark, CONTENT_W - 32);
   const benchH = 26 + benchLines.length * 11;
   y = ensureSpace(ctx, y, benchH + 12);
   doc.setFillColor(...NAVY);

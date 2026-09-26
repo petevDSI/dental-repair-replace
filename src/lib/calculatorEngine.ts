@@ -114,7 +114,7 @@ function buildBenchmark(
   if (pct >= 75) {
     return `At ${ageYears} years, this equipment is in the late phase of its ${expectedLifespan}-year expected lifespan — ${pct}% through its cycle. Practices with ${label} at this stage typically begin budgeting for replacement.`;
   }
-  return `At ${ageYears} years, this equipment has used ${pct}% of its ${expectedLifespan}-year expected lifespan. Comparable ${label} in this age range are generally repair-viable when costs are controlled.`;
+  return `At ${ageYears} years, this equipment has used ${pct}% of its ${expectedLifespan}-year expected lifespan. Comparable ${label.replace(/^comparable /, '')} in this age range are generally repair-viable when costs are controlled.`;
 }
 
 export function runCalculation(form: CalculatorFormData): CalculationResult {
