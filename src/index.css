@@ -101,7 +101,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   }
 
   /* Print styles for report export */
@@ -118,4 +118,7 @@ All colors MUST be HSL.
       print-color-adjust: exact;
     }
   }
+}
+@layer base {
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
 }

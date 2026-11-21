@@ -112,7 +112,7 @@ const Step2Condition = ({ data, onChange, onNext, onBack, category }: Props) => 
                   <span
                     aria-hidden="true"
                     className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center text-xs font-bold ${
-                      isSelected ? 'bg-teal-500 border-teal-500 text-white' : 'border-slate-300 bg-white text-transparent'
+                      isSelected ? 'bg-teal-500 border-teal-500 text-slate-950' : 'border-slate-300 bg-white text-transparent'
                     }`}
                   >
                     ✓

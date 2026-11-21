@@ -18,7 +18,14 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+				display: ['Fraunces', 'Georgia', 'serif'],
+			},
 			colors: {
+				// Dental Strategy Institute brand: gold accent (replaces teal) and navy-tinted neutrals (replaces slate)
+				teal: { 50:'#fbf5e6',100:'#f4e8c4',200:'#ecd99c',300:'#e3c876',400:'#d6b95e',500:'#c9a84c',600:'#a0522d',700:'#82431f',800:'#693619',900:'#4f2913',950:'#321a0c' },
+				slate: { 50:'#f4f8fc',100:'#e8eef6',200:'#d5dfec',300:'#b6c4d8',400:'#8a9bb5',500:'#5f7391',600:'#44577a',700:'#2c3f63',800:'#1a2e50',900:'#122547',950:'#0d1f3c' },
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

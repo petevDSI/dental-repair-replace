@@ -70,8 +70,8 @@ const TimelineChart = ({ repairCosts, replaceCosts }: Props) => {
               label={{ value: 'Crossover', position: 'top', fontSize: 10, fill: '#d97706' }}
             />
           )}
-          <Line type="monotone" dataKey="repair" stroke="#14b8a6" strokeWidth={2.5} dot={{ r: 4, fill: '#14b8a6' }} activeDot={{ r: 6 }} />
-          <Line type="monotone" dataKey="replace" stroke="#6366f1" strokeWidth={2.5} dot={{ r: 4, fill: '#6366f1' }} activeDot={{ r: 6 }} strokeDasharray="5 5" />
+          <Line type="monotone" dataKey="repair" stroke="#c9a84c" strokeWidth={2.5} dot={{ r: 4, fill: '#c9a84c' }} activeDot={{ r: 6 }} />
+          <Line type="monotone" dataKey="replace" stroke="#0d1f3c" strokeWidth={2.5} dot={{ r: 4, fill: '#0d1f3c' }} activeDot={{ r: 6 }} strokeDasharray="5 5" />
         </LineChart>
       </ResponsiveContainer>
       <p className="text-xs text-slate-400 mt-2">Repair path reflects cumulative, escalating repair and downtime costs based on age and failure frequency. Replacement path spreads the replacement cost over the new equipment's expected lifespan, plus minimal ongoing maintenance, so both paths are compared on an annualized cost-of-ownership basis.</p>

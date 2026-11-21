@@ -20,7 +20,7 @@ const StepProgress = ({ currentStep, totalSteps, stepLabels }: Props) => {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold mb-1.5 transition-all duration-300 z-10 relative ${
                   isComplete
-                    ? 'bg-teal-500 text-white'
+                    ? 'bg-teal-500 text-slate-950'
                     : isActive
                     ? 'bg-navy-800 border-2 border-teal-500 text-teal-500 bg-white'
                     : 'bg-slate-100 text-slate-400 border-2 border-slate-200'

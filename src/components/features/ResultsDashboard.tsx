@@ -23,7 +23,7 @@ const VERDICT_CONFIG = {
   },
   repair_acceptable: {
     bg: 'bg-teal-50 border-teal-200',
-    badge: 'bg-teal-500 text-white',
+    badge: 'bg-teal-500 text-slate-950',
     icon: '⚙️',
     iconBg: 'bg-teal-100',
     label: 'Repair Acceptable',
@@ -305,7 +305,7 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
                 href="https://dentalassetiq.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-teal-500 hover:bg-teal-400 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+                className="inline-block bg-teal-500 hover:bg-teal-400 text-slate-950 text-sm font-semibold px-4 py-2 rounded-lg transition-all"
               >
                 Explore DentalAssetIQ
               </a>

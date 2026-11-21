@@ -7,7 +7,7 @@ interface ScoreRingProps {
 }
 
 const COLOR_MAP = {
-  teal: { stroke: '#14b8a6', text: '#0d9488', bg: '#f0fdfa' },
+  teal: { stroke: '#c9a84c', text: '#a0522d', bg: '#fbf5e6' },
   amber: { stroke: '#f59e0b', text: '#d97706', bg: '#fffbeb' },
   red: { stroke: '#ef4444', text: '#dc2626', bg: '#fef2f2' },
   blue: { stroke: '#3b82f6', text: '#2563eb', bg: '#eff6ff' },

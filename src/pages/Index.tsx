@@ -1,5 +1,4 @@
 import DentalCalculator from '@/components/features/DentalCalculator';
-import heroImage from '@/assets/hero-dental.jpg';
 
 const STATS = [
   { value: '7', label: 'Decision variables scored' },
@@ -79,31 +78,35 @@ const FAQ = [
 ];
 
 const Index = () => {
+  // ?embed=1 renders only the calculator, for use inside the Dental Strategy Institute site.
+  const embed = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('embed') === '1';
   const scrollToCalculator = () => {
     document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* ── NAV ──────────────────────────────── */}
+    <div className="min-h-screen bg-white" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
+      {!embed && (<>
+{/* ── NAV ──────────────────────────────── */}
       <header className="border-b border-slate-800 bg-slate-950 sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-              <svg className="w-[18px] h-[18px] text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-[18px] h-[18px] text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
             <div className="flex items-baseline gap-0.5">
               <span className="font-bold text-white text-base tracking-tight">DentalAsset</span>
               <span className="font-bold text-teal-400 text-base tracking-tight">IQ</span>
+              <a href="https://www.dentalstrategyinstitute.com" className="hidden md:inline ml-3 pl-3 border-l border-slate-700 text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400 hover:text-teal-300">from Dental Strategy Institute</a>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-teal-300 bg-teal-500/10 border border-teal-500/25 px-2.5 py-1 rounded-full">100% Free · No Sign-Up</span>
             <button
               onClick={scrollToCalculator}
-              className="bg-teal-500 hover:bg-teal-400 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+              className="bg-teal-500 hover:bg-teal-400 text-slate-950 text-sm font-semibold px-4 py-2 rounded-lg transition-all"
             >
               Start Free Assessment
             </button>
@@ -114,15 +117,11 @@ const Index = () => {
       {/* ── HERO ─────────────────────────────── */}
       <section className="relative overflow-hidden bg-slate-950 min-h-[480px] flex items-center">
         {/* Blueprint grid background */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
         {/* Animated grid overlay */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: 'linear-gradient(rgba(20,184,166,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,166,0.5) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(201,168,76,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.5) 1px, transparent 1px)',
             backgroundSize: '48px 48px',
           }}
         />
@@ -144,7 +143,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <button
                 onClick={scrollToCalculator}
-                className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg shadow-teal-500/25 text-base"
+                className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg shadow-teal-500/20 text-base"
               >
                 Start Free Assessment →
               </button>
@@ -206,8 +205,10 @@ const Index = () => {
         </div>
       </section>
 
+      </>)}
+
       {/* ── CALCULATOR ───────────────────────── */}
-      <section id="calculator" className="py-14 sm:py-20 bg-white">
+      <section id="calculator" className={embed ? "py-6 bg-white" : "py-14 sm:py-20 bg-white"}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
             {/* Calculator — takes 3/5 */}
@@ -289,6 +290,7 @@ const Index = () => {
         </div>
       </section>
 
+      {!embed && (<>
       {/* ── FREE / WHAT YOU GET ─────────────── */}
       <section className="py-14 sm:py-16 bg-white border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -312,7 +314,7 @@ const Index = () => {
           <div className="text-center mt-8">
             <button
               onClick={scrollToCalculator}
-              className="bg-teal-500 hover:bg-teal-400 text-white font-bold py-3 px-8 rounded-xl transition-all text-sm"
+              className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3 px-8 rounded-xl transition-all text-sm"
             >
               Start Your Free Assessment →
             </button>
@@ -351,11 +353,11 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 bg-teal-500 rounded-md flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <span className="text-sm font-bold text-white">DentalAsset<span className="text-teal-400">IQ</span></span>
+              <span className="text-sm font-bold text-white">DentalAsset<span className="text-teal-400">IQ</span> <a href="https://www.dentalstrategyinstitute.com" className="ml-2 text-xs font-normal text-slate-400 hover:text-teal-300">from Dental Strategy Institute</a></span>
             </div>
             <p className="text-xs text-slate-500 text-center max-w-md">
               Results are estimates based on industry benchmarks and user-provided data. Not a substitute for professional financial or clinical advice. Always consult a qualified equipment specialist before major capital decisions.
@@ -368,6 +370,7 @@ const Index = () => {
           </div>
         </div>
       </footer>
+</>)}
     </div>
   );
 };
