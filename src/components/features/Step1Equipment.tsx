@@ -133,7 +133,7 @@ const Step1Equipment = ({ data, onChange, onNext }: Props) => {
         <button
           onClick={onNext}
           disabled={!isValid}
-          className="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md active:scale-[0.98]"
+          className="w-full sm:w-auto bg-navy hover:bg-navy-soft disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded-full transition-all duration-200 text-sm shadow-sm hover:shadow-md active:scale-[0.98]"
         >
           Continue →
         </button>

@@ -8,51 +8,44 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 43 100% 99%;
+    --foreground: 216 25% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 216 25% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 216 25% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 64% 14%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 57% 97%;
+    --secondary-foreground: 217 64% 14%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 57% 97%;
+    --muted-foreground: 215 12% 42%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 205 52% 94%;
+    --accent-foreground: 217 64% 14%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 6 63% 46%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 213 26% 92%;
+    --input: 214 22% 82%;
+    --ring: 44 54% 54%;
 
-    --radius: 0.5rem;
+    --radius: 0.875rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 210 57% 97%;
+    --sidebar-foreground: 216 25% 20%;
+    --sidebar-primary: 217 64% 14%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 205 52% 94%;
+    --sidebar-accent-foreground: 217 64% 14%;
+    --sidebar-border: 213 26% 92%;
+    --sidebar-ring: 44 54% 54%;
   }
 
   .dark {
@@ -102,6 +95,7 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Print styles for report export */
@@ -120,5 +114,5 @@ All colors MUST be HSL.
   }
 }
 @layer base {
-  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
+  h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; font-weight: 600; line-height: 1.15; }
 }

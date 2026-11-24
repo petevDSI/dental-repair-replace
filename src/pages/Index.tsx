@@ -85,10 +85,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-paper" style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}>
       {!embed && (<>
 {/* ── NAV ──────────────────────────────── */}
-      <header className="border-b border-slate-800 bg-slate-950 sticky top-0 z-20">
+      <header className="border-b border-line bg-paper/90 backdrop-blur-md sticky top-0 z-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
@@ -97,16 +97,16 @@ const Index = () => {
               </svg>
             </div>
             <div className="flex items-baseline gap-0.5">
-              <span className="font-bold text-white text-base tracking-tight">DentalAsset</span>
-              <span className="font-bold text-teal-400 text-base tracking-tight">IQ</span>
-              <a href="https://www.dentalstrategyinstitute.com" className="hidden md:inline ml-3 pl-3 border-l border-slate-700 text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400 hover:text-teal-300">from Dental Strategy Institute</a>
+              <span className="font-bold text-navy text-base tracking-tight">DentalAsset</span>
+              <span className="font-bold text-gold-deep text-base tracking-tight">IQ</span>
+              <a href="https://www.dentalstrategyinstitute.com" className="hidden md:inline ml-3 pl-3 border-l border-line text-[11px] font-medium uppercase tracking-[0.14em] text-subtle hover:text-gold-deep">from Dental Strategy Institute</a>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-teal-300 bg-teal-500/10 border border-teal-500/25 px-2.5 py-1 rounded-full">100% Free · No Sign-Up</span>
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-gold-deep bg-sand border border-gold/40 px-3 py-1 rounded-full">100% Free · No Sign-Up</span>
             <button
               onClick={scrollToCalculator}
-              className="bg-teal-500 hover:bg-teal-400 text-slate-950 text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+              className="bg-navy hover:bg-navy-soft text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all"
             >
               Start Free Assessment
             </button>
@@ -115,41 +115,41 @@ const Index = () => {
       </header>
 
       {/* ── HERO ─────────────────────────────── */}
-      <section className="relative overflow-hidden bg-slate-950 min-h-[480px] flex items-center">
+      <section className="relative overflow-hidden bg-cloud min-h-[480px] flex items-center">
         {/* Blueprint grid background */}
         {/* Animated grid overlay */}
         <div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-[0.06]"
           style={{
-            backgroundImage: 'linear-gradient(rgba(201,168,76,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.5) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(13,31,60,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(13,31,60,0.6) 1px, transparent 1px)',
             backgroundSize: '48px 48px',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-paper" />
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 w-full">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/25 text-teal-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse" />
+            <div className="inline-flex items-center gap-2 bg-sand border border-gold/40 text-gold-deep text-xs font-bold uppercase tracking-[0.14em] px-3.5 py-1.5 rounded-full mb-6">
+              <span className="w-1.5 h-1.5 bg-gold rounded-full animate-pulse" />
               100% Free Dental Equipment Calculator
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-5">
+            <h1 className="text-4xl sm:text-5xl font-semibold text-navy leading-tight mb-5">
               Should You Repair or Replace<br />
-              <span className="text-teal-400">Your Dental Equipment?</span>
+              <span className="text-gold-deep">Your Dental Equipment?</span>
             </h1>
-            <p className="text-slate-300 text-lg leading-relaxed mb-8">
+            <p className="text-ink text-lg leading-relaxed mb-8">
               A free tool that uses operational data, lifecycle benchmarks, downtime analysis, and repair economics to help you make smarter, more objective equipment decisions. No account or sign-up needed.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-10">
               <button
                 onClick={scrollToCalculator}
-                className="bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3.5 px-8 rounded-xl transition-all shadow-lg shadow-teal-500/20 text-base"
+                className="bg-navy hover:bg-navy-soft text-white font-bold py-3.5 px-8 rounded-full transition-all shadow-card text-base"
               >
                 Start Free Assessment →
               </button>
               <button
                 onClick={() => window.open('/sample-report.pdf', '_blank')}
-                className="border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white font-semibold py-3.5 px-8 rounded-xl transition-all text-base"
+                className="border-2 border-navy hover:bg-navy text-navy hover:text-white font-bold py-3.5 px-8 rounded-full transition-all text-base"
               >
                 View Sample Report
               </button>
@@ -157,8 +157,8 @@ const Index = () => {
             {/* Trust badges */}
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               {['100% free, forever', 'No account or sign-up', 'Takes under 3 minutes', 'Evidence-based 7-factor algorithm'].map((item) => (
-                <div key={item} className="flex items-center gap-1.5 text-sm text-slate-400">
-                  <svg className="w-3.5 h-3.5 text-teal-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <div key={item} className="flex items-center gap-1.5 text-sm text-subtle">
+                  <svg className="w-3.5 h-3.5 text-gold-deep shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   {item}
@@ -170,9 +170,9 @@ const Index = () => {
           {/* Stats strip */}
           <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-4">
             {STATS.map((s) => (
-              <div key={s.label} className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl px-5 py-3 text-center">
-                <p className="text-2xl font-bold text-teal-400">{s.value}</p>
-                <p className="text-xs text-slate-400 mt-0.5 max-w-[100px] leading-tight">{s.label}</p>
+              <div key={s.label} className="bg-white border border-line shadow-card rounded-2xl px-5 py-3 text-center">
+                <p className="text-2xl font-semibold text-navy font-display">{s.value}</p>
+                <p className="text-xs text-subtle mt-0.5 max-w-[100px] leading-tight">{s.label}</p>
               </div>
             ))}
           </div>
@@ -180,7 +180,7 @@ const Index = () => {
       </section>
 
       {/* ── HOW IT WORKS ─────────────────────── */}
-      <section className="bg-slate-50 border-y border-slate-200 py-14 sm:py-16">
+      <section className="bg-paper border-y border-line py-14 sm:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-bold text-slate-900 mb-2">How the Analysis Works</h2>
@@ -190,12 +190,12 @@ const Index = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {HOW_IT_WORKS.map((item) => (
-              <div key={item.step} className="bg-white rounded-2xl border border-slate-200 p-5 relative overflow-hidden">
-                <span className="absolute top-4 right-4 text-5xl font-black text-slate-100 leading-none select-none">
+              <div key={item.step} className="bg-white rounded-2xl border border-line shadow-card p-5 relative overflow-hidden">
+                <span className="absolute top-4 right-4 text-5xl font-black text-mist leading-none select-none">
                   {item.step}
                 </span>
                 <div className="relative">
-                  <p className="text-xs font-bold text-teal-600 uppercase tracking-widest mb-2">Step {item.step}</p>
+                  <p className="text-xs font-bold text-gold-deep uppercase tracking-[0.14em] mb-2">Step {item.step}</p>
                   <h3 className="font-semibold text-slate-900 mb-2 text-sm">{item.title}</h3>
                   <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
                 </div>
@@ -208,7 +208,7 @@ const Index = () => {
       </>)}
 
       {/* ── CALCULATOR ───────────────────────── */}
-      <section id="calculator" className={embed ? "py-6 bg-white" : "py-14 sm:py-20 bg-white"}>
+      <section id="calculator" className={embed ? "py-6 bg-paper" : "py-14 sm:py-20 bg-paper"}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
             {/* Calculator — takes 3/5 */}
@@ -223,7 +223,7 @@ const Index = () => {
             {/* Sidebar — takes 2/5 */}
             <div className="lg:col-span-2 space-y-5">
               {/* Decision score legend */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-5">
+              <div className="bg-white border border-line shadow-card rounded-2xl p-5">
                 <h3 className="text-sm font-semibold text-slate-800 mb-4">Decision Score Guide</h3>
                 <div className="space-y-2.5">
                   {[
@@ -247,7 +247,7 @@ const Index = () => {
               </div>
 
               {/* Expected Lifespans */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-5">
+              <div className="bg-white border border-line shadow-card rounded-2xl p-5">
                 <h3 className="text-sm font-semibold text-slate-800 mb-4">Industry Lifespan Benchmarks</h3>
                 <div className="space-y-1.5">
                   {[
@@ -269,8 +269,8 @@ const Index = () => {
               </div>
 
               {/* Key stat */}
-              <div className="bg-slate-900 rounded-2xl p-5 text-white">
-                <p className="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-3">Repair Burden Thresholds</p>
+              <div className="bg-mist border border-line rounded-2xl p-5 text-navy">
+                <p className="text-xs font-bold text-gold-deep uppercase tracking-[0.14em] mb-3">Repair Burden Thresholds</p>
                 <div className="space-y-2.5">
                   {[
                     { range: '< 15% of replacement cost', verdict: 'Repair strongly viable' },
@@ -278,9 +278,9 @@ const Index = () => {
                     { range: '35–55%', verdict: 'Monitor carefully' },
                     { range: '> 55%', verdict: 'Replacement likely favored' },
                   ].map((row) => (
-                    <div key={row.range} className="flex justify-between gap-3 text-xs border-b border-slate-700 pb-2 last:border-0 last:pb-0">
-                      <span className="text-slate-400 font-mono">{row.range}</span>
-                      <span className="text-slate-200 text-right">{row.verdict}</span>
+                    <div key={row.range} className="flex justify-between gap-3 text-xs border-b border-navy/10 pb-2 last:border-0 last:pb-0">
+                      <span className="text-subtle font-mono">{row.range}</span>
+                      <span className="text-ink text-right">{row.verdict}</span>
                     </div>
                   ))}
                 </div>
@@ -348,7 +348,7 @@ const Index = () => {
       </section>
 
       {/* ── FOOTER ───────────────────────────── */}
-      <footer className="bg-slate-950 border-t border-slate-800">
+      <footer className="bg-cloud border-t border-line">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
@@ -357,15 +357,15 @@ const Index = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <span className="text-sm font-bold text-white">DentalAsset<span className="text-teal-400">IQ</span> <a href="https://www.dentalstrategyinstitute.com" className="ml-2 text-xs font-normal text-slate-400 hover:text-teal-300">from Dental Strategy Institute</a></span>
+              <span className="text-sm font-bold text-navy">DentalAsset<span className="text-gold-deep">IQ</span> <a href="https://www.dentalstrategyinstitute.com" className="ml-2 text-xs font-normal text-subtle hover:text-gold-deep">from Dental Strategy Institute</a></span>
             </div>
-            <p className="text-xs text-slate-500 text-center max-w-md">
+            <p className="text-xs text-subtle text-center max-w-md">
               Results are estimates based on industry benchmarks and user-provided data. Not a substitute for professional financial or clinical advice. Always consult a qualified equipment specialist before major capital decisions.
             </p>
-            <div className="flex gap-4 text-xs text-slate-500">
-              <a href="#" className="hover:text-teal-400 transition-colors">Privacy</a>
-              <a href="#" className="hover:text-teal-400 transition-colors">Terms</a>
-              <a href="#" className="hover:text-teal-400 transition-colors">Contact</a>
+            <div className="flex gap-4 text-xs text-subtle">
+              <a href="#" className="hover:text-gold-deep transition-colors">Privacy</a>
+              <a href="#" className="hover:text-gold-deep transition-colors">Terms</a>
+              <a href="#" className="hover:text-gold-deep transition-colors">Contact</a>
             </div>
           </div>
         </div>

@@ -244,16 +244,16 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
       </div>
 
       {/* Industry Benchmark */}
-      <div className="bg-navy-50 border border-slate-200 rounded-2xl p-5 bg-slate-900">
+      <div className="bg-sand border border-line rounded-2xl p-5">
         <div className="flex gap-3">
-          <div className="w-8 h-8 rounded-lg bg-teal-500/20 border border-teal-500/30 flex items-center justify-center shrink-0">
-            <svg className="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-8 h-8 rounded-lg bg-white border border-gold/40 flex items-center justify-center shrink-0">
+            <svg className="w-4 h-4 text-gold-deep" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
           <div>
-            <p className="text-xs font-semibold text-teal-400 uppercase tracking-widest mb-1">Industry Benchmark</p>
-            <p className="text-sm text-slate-300 leading-relaxed">{result.industryBenchmark}</p>
+            <p className="text-xs font-bold text-gold-deep uppercase tracking-[0.14em] mb-1">Industry Benchmark</p>
+            <p className="text-sm text-ink leading-relaxed">{result.industryBenchmark}</p>
           </div>
         </div>
       </div>
@@ -288,7 +288,7 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
       )}
 
       {/* DentalAssetIQ Platform CTA */}
-      <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-6 text-white">
+      <div className="bg-navy rounded-2xl p-6 text-white shadow-card">
         <div className="flex items-start gap-4">
           <div className="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center shrink-0">
             <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -305,7 +305,7 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
                 href="https://dentalassetiq.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-teal-500 hover:bg-teal-400 text-slate-950 text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+                className="inline-block bg-gold hover:bg-gold-deep text-navy hover:text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all"
               >
                 Explore DentalAssetIQ
               </a>
@@ -313,7 +313,7 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
                 href="https://dentalassetiq.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block border border-slate-600 hover:border-slate-400 text-slate-300 hover:text-white text-sm font-medium px-4 py-2 rounded-lg transition-all"
+                className="inline-block border-2 border-white/40 hover:border-white text-white/90 hover:text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all"
               >
                 View Sample Dashboard
               </a>
@@ -330,7 +330,7 @@ const ResultsDashboard = ({ result, equipmentLabel, manufacturer, onReset }: Pro
         </div>
         <button
           onClick={onReset}
-          className="flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-xl transition-all text-sm shadow-sm hover:shadow-md active:scale-[0.98] whitespace-nowrap"
+          className="flex items-center gap-2 bg-navy hover:bg-navy-soft text-white font-bold py-3 px-6 rounded-full transition-all text-sm shadow-sm hover:shadow-md active:scale-[0.98] whitespace-nowrap"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />

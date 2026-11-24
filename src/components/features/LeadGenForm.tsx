@@ -132,7 +132,7 @@ const LeadGenForm = ({ recommendedBrand, equipmentLabel }: Props) => {
       <button
         type="submit"
         disabled={!isValid || loading}
-        className="w-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 disabled:from-slate-200 disabled:to-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-semibold py-3.5 px-8 rounded-xl transition-all duration-200 text-sm shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
+        className="w-full bg-navy hover:bg-navy-soft disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-bold py-3.5 px-8 rounded-full transition-all duration-200 text-sm shadow-sm hover:shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
       >
         {loading ? (
           <>

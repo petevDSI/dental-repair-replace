@@ -101,7 +101,7 @@ const Step4Maintenance = ({ data, onChange, onCalculate, onBack, isLoading }: Pr
         <button
           onClick={onCalculate}
           disabled={!isValid || isLoading}
-          className="flex-1 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 disabled:from-slate-100 disabled:to-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-semibold py-3.5 px-8 rounded-xl transition-all text-sm shadow-sm hover:shadow-lg active:scale-[0.98] flex items-center justify-center gap-2"
+          className="flex-1 bg-navy hover:bg-navy-soft disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-bold py-3.5 px-8 rounded-full transition-all text-sm shadow-sm hover:shadow-lg active:scale-[0.98] flex items-center justify-center gap-2"
         >
           {isLoading ? (
             <>

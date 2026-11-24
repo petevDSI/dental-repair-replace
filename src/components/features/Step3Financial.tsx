@@ -140,7 +140,7 @@ const Step3Financial = ({ data, onChange, onNext, onBack }: Props) => {
         <button
           onClick={onNext}
           disabled={!isValid}
-          className="flex-1 sm:flex-none bg-teal-600 hover:bg-teal-700 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-8 rounded-xl transition-all text-sm shadow-sm hover:shadow-md active:scale-[0.98]"
+          className="flex-1 sm:flex-none bg-navy hover:bg-navy-soft disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-bold py-3 px-8 rounded-full transition-all text-sm shadow-sm hover:shadow-md active:scale-[0.98]"
         >
           Continue →
         </button>
