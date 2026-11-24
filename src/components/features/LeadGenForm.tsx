@@ -2,6 +2,8 @@ import { useState } from 'react';
 import type { LeadFormData } from '@/types/calculator';
 import { toast } from 'sonner';
 
+const QUOTE_ENDPOINT = 'https://daiq-site.vercel.app/api/quote-request';
+
 interface Props {
   recommendedBrand: string;
   equipmentLabel: string;
@@ -29,25 +31,26 @@ const LeadGenForm = ({ recommendedBrand, equipmentLabel }: Props) => {
     setLoading(true);
 
     try {
-      const body = new URLSearchParams();
-      body.append('form_fields[name]', form.name);
-      body.append('form_fields[email]', form.email);
-      body.append('form_fields[custom_6]', form.phone);
-      body.append('form_fields[address_zip]', form.zipCode);
-      body.append('form_fields[custom_7]', equipmentLabel);
-      body.append('form_fields[custom_8]', recommendedBrand);
-
-      await fetch('https://app.kajabi.com/forms/2149598552/form_submissions', {
+      const res = await fetch(QUOTE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          zip: form.zipCode,
+          equipment: equipmentLabel,
+          brand: recommendedBrand,
+        }),
       });
-
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.message || 'Request failed');
+      }
       setSubmitted(true);
     } catch (err) {
       console.error('Form submission error:', err);
-      setSubmitted(true); // still show success — Kajabi submission is fire-and-forget
+      toast.error('We could not send your request. Please try again, or email petev@dentalstrategyinstitute.com.');
     } finally {
       setLoading(false);
     }
