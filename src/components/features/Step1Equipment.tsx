@@ -111,9 +111,10 @@ const Step1Equipment = ({ data, onChange, onNext }: Props) => {
         </div>
         <div className="space-y-1.5">
           <label className="block text-sm font-medium text-slate-700" htmlFor="origCost">
-            Original Purchase Price
+            Estimated Cost to Replace Today
             <span className="ml-1 text-slate-400 font-normal text-xs">(optional)</span>
           </label>
+          <p className="text-xs text-slate-400">What a comparable new unit would cost today, installed. Use a current quote if you have one; the original purchase price understates this for older equipment.</p>
           <div className="relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
             <input
