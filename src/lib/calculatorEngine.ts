@@ -154,7 +154,8 @@ export function runCalculation(form: CalculatorFormData): CalculationResult {
   const totalMaintenanceModifier = maintenanceModifier + serviceContractBonus;
 
   // ── 6. FINAL WEIGHTED SCORE ──────────────────────────
-  // Age: 20%, Repair Burden: 25%, Failure Freq (via burden): 15%, Downtime: 20%, Obsolescence: 10%, Maintenance: 10%
+  // Age: 20%, Repair Burden (already adjusted for failure frequency): 40%, Downtime: 20%, Obsolescence: 10%.
+  // Maintenance (PM schedule / service contract) is added as a flat modifier below.
   const rawScore =
     ageScore * 0.20 +
     adjustedRepairBurden * 0.40 + // Adjusted already includes failure frequency
@@ -175,7 +176,6 @@ export function runCalculation(form: CalculatorFormData): CalculationResult {
     finalScore: Math.round(finalScore),
   };
 
-  const { verdict, label, subtext } = verdictFromScore(finalScore);
   const replacementCategory: ReplacementCategory = REPLACEMENT_CATEGORY[category];
   const partsFlag = step2.partsAvailability === 'discontinued' || step2.partsAvailability === 'difficult';
 
@@ -187,6 +187,19 @@ export function runCalculation(form: CalculatorFormData): CalculationResult {
     ageScore,
     step2.repairsLast24Months
   );
+
+  // Keep the verdict consistent with the 5-year cost comparison shown beside it.
+  // Thresholds use the rounded score so the verdict matches the number on screen.
+  let { verdict, label, subtext } = verdictFromScore(Math.round(finalScore));
+  const repair5 = projectedRepairCosts[4];
+  const replace5 = projectedReplaceCosts[4];
+  if ((verdict === 'repair_recommended' || verdict === 'repair_acceptable') && repair5 > replace5 * 1.25) {
+    ({ verdict, label, subtext } = verdictFromScore(56)); // plan_replacement tier
+    subtext = 'Your score looks acceptable, but projected repair spending over five years exceeds the annualized cost of replacing this unit. Begin evaluating replacement options.';
+  } else if (verdict === 'replace_recommended' && repair5 < replace5 * 0.6) {
+    ({ verdict, label, subtext } = verdictFromScore(56));
+    subtext = 'Condition and age point toward replacement, but projected repair spending over five years is well below the annualized cost of a new unit. Plan replacement rather than replacing immediately.';
+  }
 
   const industryBenchmark = buildBenchmark(ageYears, expectedLifespan, category);
 
